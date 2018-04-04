@@ -19,7 +19,7 @@ const User = mongoose.model('user', new mongoose.Schema({
 }))
 // // 新增数据
 // User.create({
-//     user: 'xiaobaai',
+//     user: '王东asd晓2',
 //     age: 16
 // }, function (err, doc) {
 //     if (!err) {
@@ -30,13 +30,13 @@ const User = mongoose.model('user', new mongoose.Schema({
 // })
 
 // 删除数据
-// User.remove({age:16},function(err,doc){
-//     console.log(doc)
-// })
+User.remove({age:16},function(err,doc){
+    console.log(doc)
+})
 
 // 修改数据
 User.update({
-    'user': 'xiaobai'
+    'user': '王东晓'
 }, {
     '$set': {
         age: 26
