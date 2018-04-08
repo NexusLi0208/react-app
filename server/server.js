@@ -17,22 +17,22 @@ const User = mongoose.model('user', new mongoose.Schema({
         require: true
     }
 }))
-// // 新增数据
-// User.create({
-//     user: '王东asd晓2',
-//     age: 16
-// }, function (err, doc) {
-//     if (!err) {
-//         console.log(doc)
-//     } else {
-//         console.log(err);
-//     }
-// })
+// 新增数据
+User.create({
+    user: '王东asd晓2',
+    age: 16
+}, function (err, doc) {
+    if (!err) {
+        console.log(doc)
+    } else {
+        console.log(err);
+    }
+})
 
 // 删除数据
-User.remove({age:16},function(err,doc){
-    console.log(doc)
-})
+// User.remove({age:16},function(err,doc){
+//     console.log(doc)
+// })
 
 // 修改数据
 User.update({

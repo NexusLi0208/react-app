@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
 // import logo from './logo.svg';
+import {Button,List} from 'antd-mobile'
+// import 'antd-mobile/dist/antd-mobile.css'
 import './App.css';
 // import {createStore} from 'redux'; class App extends Component {   render() {
 //     return (       <div className="App">         <header
@@ -25,20 +27,22 @@ class CampOne extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      solders: ['虎子', '王东晓', '小智障']
+      solders: ['虎子']
     }
+  }
+  addNewSolder() {
+    this.setState({solders:[...this.state.solders,'新兵蛋子'+Math.random()]})
   }
   render() {
     return (
       <div>
         <h2>一营营长,{this.props.boss}</h2>
-        <ul>
-          {
-            this.state.solders.map(item=>{
-              return <li key={item}>{item}</li>
-            })
-          }
-        </ul>
+        <Button type="primary" onClick={()=>{this.addNewSolder()}}>新兵入伍</Button>
+      　<List renderHeader={()=>'士兵列表'}  renderFooter={()=>'sadsad'}>
+           {this.state.solders.map(item => {
+              return <List.Item key={item}>{item}</List.Item>
+            })}
+      　</List>
       </div>
     )
   }
@@ -46,6 +50,7 @@ class CampOne extends Component {
 // 函数式
 function House(props) {
   return <h2>骑兵连连长{props.boss}</h2>
+  
 }
 
 export default App;
