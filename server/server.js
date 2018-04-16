@@ -3,9 +3,11 @@ const mongoose = require('mongoose');
 // 链接mongo 并且使用nexus 集合
 const DB_URL = 'mongodb://localhost:27017/nexus';
 mongoose.connect(DB_URL);
-mongoose.connection.on('connected', function () {
-    console.log('mongo conect success');
-})
+mongoose
+    .connection
+    .on('connected', function () {
+        console.log('mongo conect success');
+    })
 // 类似于mysql的表,mongol里有模型
 const User = mongoose.model('user', new mongoose.Schema({
     user: {
@@ -29,12 +31,7 @@ User.create({
     }
 })
 
-// 删除数据
-// User.remove({age:16},function(err,doc){
-//     console.log(doc)
-// })
-
-// 修改数据
+// 删除数据 User.remove({age:16},function(err,doc){     console.log(doc) }) 修改数据
 User.update({
     'user': '王东晓'
 }, {
@@ -47,15 +44,24 @@ User.update({
 
 //新建app
 const app = express();
+app.all('*', function (req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "X-Requested-With");
+    res.header("Access-Control-Allow-Methods", "PUT,POST,GET,DELETE,OPTIONS");
+    res.header("X-Powered-By", ' 3.2.1')
+    res.header("Content-Type", "application/json;charset=utf-8");
+    next();
+});
+
 app.get('/', function (req, res) {
     res.send('<h1>Hello world</h1>')
 })
 // 返回JSON
 app.get('/data', function (req, res) {
-    // 查找
+    // 查找 console.log(req);
     User.find({}, function (err, doc) {
-        res.json(doc)
-    })
+            res.json(doc)
+        })
 })
 
 app.listen(8086, function () {
