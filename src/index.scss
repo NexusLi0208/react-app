@@ -1,0 +1,23 @@
+body {
+  margin: 0;
+  padding: 0; // background-color: #fff;
+  font-family: sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.error-msg {
+  position: fixed;
+  width: 100%;
+  top: 0;
+  height: 30px;
+  line-height: 30px;
+  text-align: center;
+  margin: 0;
+  left: 0;
+  color: #fff;
+  background: rgba(255, 102, 102,.9);
+  width: 100%;
+}
