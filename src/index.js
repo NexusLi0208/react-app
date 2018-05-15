@@ -8,7 +8,7 @@ import {createStore, applyMiddleware, compose} from 'redux';
 import thunk from 'redux-thunk';
 // 连接用
 import {Provider} from 'react-redux';
-import {BrowserRouter, Route, Link, Redirect, Switch} from 'react-router-dom'
+import {BrowserRouter, Route} from 'react-router-dom'
 import registerServiceWorker from './registerServiceWorker';
 import reducers from './reducer'
 import './config'

@@ -7,7 +7,7 @@ mongoose.connect(DB_URL);
 const models={
     user:{
         'user':{type:String,require:true},
-        'pws':{type:String,require:true},
+        'pwd':{type:String,require:true},
         'type':{type:String,require:true},
         //头像
         'avatar':{'type':String},
