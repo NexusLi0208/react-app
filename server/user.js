@@ -65,6 +65,22 @@ Router.post('/login', (req, res) => {
 
     })
 })
+// 更新用户信息
+Router.post('/update',function(req,res){
+    const {userId} = req.cookies;
+    if(!userId){
+        return res.json.dumps({code:0})
+    }
+    const body = req.body;
+    User.findByIdAndUpdate(userId,body,function(err,doc){
+       const data=Object.assign({},{
+           user:doc.user,
+           type:doc.type
+        },body)
+           return res.json({code:1,data})
+       });
+    })
+
 // md5加密
 function md5Pwd(pwd) {
     const salt = 'lipeng_is_cool_nexusLi';
