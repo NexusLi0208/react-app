@@ -21,3 +21,27 @@ body {
   background: rgba(255, 102, 102,.9);
   width: 100%;
 }
+.am-tab-bar{
+  position: fixed;
+  height:auto;
+	bottom: 0;
+	width: 100%;
+}
+.fixd-header.am-navbar{
+	position: fixed;
+	top: 0;
+	width: 100%;
+}
+.page-content{
+	padding:45px 5px;
+}
+.result-example .spe {
+  width: 60px;
+  height: 60px;
+}
+.sub-title {
+  color: #888;
+  font-size: 14px;
+  padding: 30px 0 18px 0;
+  margin-left: 15px;
+}

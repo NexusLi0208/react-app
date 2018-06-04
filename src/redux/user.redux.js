@@ -3,7 +3,7 @@ import {getRedirectPath} from '../util'
 const ERROR_MSG = 'ERROR_MSG'
 const AUTH_SUCCESS = 'AUTH_SUCCESS'
 const LOAD_DATA = 'LOAD_DATA'
-
+const LOGOUT = 'LOGOUT'
 const initState = {
     redirectTo: '',
     isAuth: '',
@@ -21,6 +21,11 @@ export function user(state = initState, action) {
                 redirectTo: getRedirectPath(action.payload),
                 ...action.payload
             }
+        case LOGOUT:
+            return {
+                ...initState,
+                redirectTo: '/login'
+            }
         case ERROR_MSG:
             return {
                 ...state,
@@ -36,11 +41,18 @@ export function user(state = initState, action) {
             return state
     }
 }
-function authSuccess(data) {
+function authSuccess(obj) {
+    const {
+        pwd,
+        ...data
+    } = obj
     return {type: AUTH_SUCCESS, payload: data}
 }
 function errorMsg(msg) {
     return {msg, type: ERROR_MSG}
+}
+export function logoutSubmit() {
+    return {type: LOGOUT}
 }
 export function loadData(userInfo) {
     return {type: 'LOAD_DATA', payload: userInfo}
@@ -51,7 +63,10 @@ export function userInfo() {
             .get('/user/info')
             .then(res => {
                 if (res.status === 200) {
-                    if (res.data.code !== 0) {} else {
+                    if (res.data.code !== 0) {
+
+                    }
+                    else {
                         this
                             .props
                             .loadData(res.data.data)
@@ -74,7 +89,6 @@ export function login({user, pwd}) {
             .post('/user/login', {user, pwd})
             .then(res => {
                 if (res.status === 200 && res.data.code === 1) {
-                    // dispatch(registerSuccess({user,pwd}))
                     dispatch(authSuccess(res.data.data))
                 } else {
                     dispatch(errorMsg(res.data.msg))

@@ -33,7 +33,7 @@ export default class BossInfo extends Component {
             
             <div>
                 {redirect&&redirect!==path? <Redirect to={this.props.redirectTo}></Redirect> :null}
-                <NavBar mode="dark">完善boss信息</NavBar>
+                <NavBar mode="dark">完善牛人信息</NavBar>
                 <AvatarSelector
                     selectAvatar={(imgname) => {
                     this.setState({avatar: imgname})
@@ -42,19 +42,9 @@ export default class BossInfo extends Component {
                     onChange={(v) => {
                     this.onChange('title', v)
                 }}>
-                    招聘职位</InputItem>
-                <InputItem
-                    onChange={(v) => {
-                    this.onChange('company', v)
-                }}>
-                    公司名称</InputItem>
-                <InputItem
-                    onChange={(v) => {
-                    this.onChange('money', v)
-                }}>
-                    职位薪资</InputItem>
+                    求职岗位</InputItem>
                 <TextareaItem
-                    title='职位要求'
+                    title='个人简介'
                     rows='3'
                     onChange={(v) => {
                     this.onChange('desc', v)

@@ -10,8 +10,9 @@ const _filter = {
 // MD5加密中间件
 const utils = require('utility')
 Router.get('/list', function (req, res) {
-    User.find({}, function (err, doc) {
-            return res.json(doc);
+    const {type} =req.query
+    User.find({type}, function (err, doc) {
+            return res.json({code:1,data:doc});
     })
 })
 // 查询登录状态
