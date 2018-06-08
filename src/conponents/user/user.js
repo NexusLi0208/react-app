@@ -21,7 +21,7 @@ export default class User extends Component {
 		    ])
 	}
     render() {
-        const myImg = src => <img src={src} className="spe am-icon am-icon-md" alt="" />;
+        const myImg = src => <img src={src} className="spe am-icon am-icon-md" alt=""/>;
         const props=this.props;
         const Item = List.Item;
         const Brief = Item.Brief
@@ -37,7 +37,6 @@ export default class User extends Component {
 						{props.desc.split('\n').map(v=><Brief key={v}>{v}</Brief>)}
 						{props.money?<Brief>薪资:{props.money}</Brief>:null}
 					</Item>
-					
 				</List>
 				<WhiteSpace></WhiteSpace>
 				<List>

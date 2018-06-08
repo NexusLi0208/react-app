@@ -6,6 +6,7 @@ import Register from './view/register/register'
 import Login from './view/login/login'
 import Bossinfo from './view/bossinfo/bossinfo'
 import Geniusinfo from './view/geniusinfo/geniusinfo'
+import Chat from './conponents/chat/chat'
 import {createStore, applyMiddleware, compose} from 'redux';
 import thunk from 'redux-thunk';
 // 连接用
@@ -28,6 +29,7 @@ ReactDOM.render((
                     <Route path='/geniusinfo' component={Geniusinfo}></Route>
                     <Route path="/register" exact component={Register}></Route>
                     <Route path="/login" exact component={Login}></Route>
+                    <Route path="/chat/:user" exact component={Chat}></Route>
                     <Route component={Dashboard}></Route>
                 </Switch>
             </div>
