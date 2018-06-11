@@ -2,6 +2,7 @@ const express = require("express");
 const Router = express.Router();
 const model = require('./model');
 const User = model.getModel('user');
+const Chat=model.getModel('chat');
 // 查询过滤
 const _filter = {
     'pwd': 0,
@@ -81,7 +82,16 @@ Router.post('/update',function(req,res){
            return res.json({code:1,data})
        });
     })
-
+Router.get('/getmsglist',function(req,res){
+    const user =req.cookies.user;
+    // Chat.find({'$or':[{from:user,to:user}]},function(err,doc){
+    // })
+    Chat.find({},function(err,doc){
+        if(!err){
+           return res.json({code:1,doc})
+        }
+    })
+})
 // md5加密
 function md5Pwd(pwd) {
     const salt = 'lipeng_is_cool_nexusLi';
