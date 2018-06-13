@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import {NavBar} from 'antd-mobile';
 import {Switch, Route} from 'react-router-dom'
 import {connect} from 'react-redux'
+import {getMsgList,recvMsg} from '../../redux/chat.redux'
 import NavLinkBar from '../navlinkbar/navlinkbar'
 import Boss from '../boss/boss'
 import Genius from '../genius/genius'
@@ -10,11 +11,16 @@ import User from '../user/user'
 function Msg() {
     return <h2>Msg</h2>
 }
-function Index() {
-    return <h2>首页</h2>
-}
-@connect(state => state)
+// function Index() {
+//     return <h2>首页</h2>
+// }
+@connect(state => state,{getMsgList,recvMsg})
 export default class Dashboard extends Component {
+
+componentDidMount() {
+    this.props.getMsgList();
+    this.props.recvMsg()
+}
 
     constructor(props) {
         super(props)

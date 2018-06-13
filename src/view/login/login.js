@@ -11,7 +11,7 @@ import From from '../../conponents/form/form'
 // function WrapperHello(fn){
 //     return function(){
 //         console.log('before');
-//         fn();
+//         fn();  
 //         console.log('after');
 //     }
 // }

@@ -37,7 +37,7 @@ export default class User extends Component {
 						{props.desc.split('\n').map(v=><Brief key={v}>{v}</Brief>)}
 						{props.money?<Brief>薪资:{props.money}</Brief>:null}
 					</Item>
-				</List>
+				</List> 
 				<WhiteSpace></WhiteSpace>
 				<List>
 					<Item onClick={this.logout}>退出登录</Item>

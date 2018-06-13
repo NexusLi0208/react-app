@@ -1,18 +1,17 @@
 
 import React, { Component } from 'react'
-import {List,InputItem} from 'antd-mobile'
-import io from 'socket.io-client'
+import {List,InputItem,NavBar} from 'antd-mobile'
+// import io from 'socket.io-client'
 import {connect} from 'react-redux'
 import {getMsgList,sendMsg,recvMsg} from '../../redux/chat.redux'
-const socket= io('ws://localhost:8086')
+// const socket= io('ws://localhost:8086')
 @connect(
     state=>state,
     {getMsgList,sendMsg,recvMsg}
 )
 export default class Chat extends Component {
     componentDidMount() {
-        this.props.getMsgList();
-        this.props.recvMsg()
+ 
         // socket.on('recvmsg',(data)=>{
         //     console.log(data)
         //    this.setState({msg:[...this.state.msg,data.text]})
@@ -26,7 +25,7 @@ export default class Chat extends Component {
         const msg =this.state.text;
         this.props.sendMsg({from,to,msg}) 
         this.setState({text:''})    
-}
+ }
      constructor(props){
          super(props)
          this.state={
@@ -36,10 +35,29 @@ export default class Chat extends Component {
          this.handleSubmit=this.handleSubmit.bind(this)
      }
     render() {
+        const user= this.props.match.params.user;
+        const Item = List.Item;
+        const Brief = Item.Brief;
         return (
-            <div>
-            {this.state.msg.map(v=>{
-                return <p key={v}>{v}</p>
+            <div className="chat-page">
+            <NavBar mode='dark'>{this.props.match.params.user}</NavBar>
+          
+            {this.props.chat.chatmsg.map(v=>{
+                // return <p key={v._id}>{v.content}</p>
+                return v.from===user?(
+                    // <p key={v._id}>对方发来的：</p>
+                    <List key={v._id} renderHeader={() => '对方消息'} >
+                      <Item  extra={new Date(v.creat_time).toLocaleString()} align="top" thumb="https://zos.alipayobjects.com/rmsportal/dNuvNrtqUztHCwM.png" multipleLine>
+                      Title <Brief>{v.content}</Brief>
+                      </Item>
+                  </List>
+                ):(
+                    <List key={v._id} renderHeader={() => '我的消息'} className="my-list">
+                        <Item className="chat-me"  extra={new Date(v.creat_time).toLocaleString()} align="top" thumb="https://zos.alipayobjects.com/rmsportal/dNuvNrtqUztHCwM.png" multipleLine>
+                         Title <Brief>{v.content}</Brief>
+                        </Item>
+                    </List>
+                )
             })}
             <div className="chat-input">
                <List>

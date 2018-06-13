@@ -1,5 +1,7 @@
 import axios from 'axios'
-import {getRedirectPath} from '../util'
+import {
+    getRedirectPath
+} from '../util'
 const ERROR_MSG = 'ERROR_MSG'
 const AUTH_SUCCESS = 'AUTH_SUCCESS'
 const LOAD_DATA = 'LOAD_DATA'
@@ -41,21 +43,34 @@ export function user(state = initState, action) {
             return state
     }
 }
+
 function authSuccess(obj) {
     const {
         pwd,
         ...data
     } = obj
-    return {type: AUTH_SUCCESS, payload: data}
+    return {
+        type: AUTH_SUCCESS,
+        payload: data
+    }
 }
+
 function errorMsg(msg) {
-    return {msg, type: ERROR_MSG}
+    return {
+        msg,
+        type: ERROR_MSG
+    }
 }
 export function logoutSubmit() {
-    return {type: LOGOUT}
+    return {
+        type: LOGOUT
+    }
 }
 export function loadData(userInfo) {
-    return {type: 'LOAD_DATA', payload: userInfo}
+    return {
+        type: 'LOAD_DATA',
+        payload: userInfo
+    }
 }
 export function userInfo() {
     return dispatch => {
@@ -65,8 +80,7 @@ export function userInfo() {
                 if (res.status === 200) {
                     if (res.data.code !== 0) {
 
-                    }
-                    else {
+                    } else {
                         this
                             .props
                             .loadData(res.data.data)
@@ -80,13 +94,19 @@ export function userInfo() {
     }
 
 }
-export function login({user, pwd}) {
+export function login({
+    user,
+    pwd
+}) {
     if (!user || !pwd) {
         return errorMsg('用户名密码必须输入')
     }
     return dispatch => {
         axios
-            .post('/user/login', {user, pwd})
+            .post('/user/login', {
+                user,
+                pwd
+            })
             .then(res => {
                 if (res.status === 200 && res.data.code === 1) {
                     dispatch(authSuccess(res.data.data))
@@ -110,7 +130,12 @@ export function update(data) {
             })
     }
 }
-export function register({user, pwd, repeatpwd, type}) {
+export function register({
+    user,
+    pwd,
+    repeatpwd,
+    type
+}) {
     console.log(user)
     if (!user || !pwd || !type) {
         return errorMsg('用户名密码必须输入')
@@ -120,10 +145,18 @@ export function register({user, pwd, repeatpwd, type}) {
     }
     return dispatch => {
         axios
-            .post('/user/register', {user, pwd, type})
+            .post('/user/register', {
+                user,
+                pwd,
+                type
+            })
             .then(res => {
                 if (res.status === 200 && res.data.code === 1) {
-                    dispatch(authSuccess({user, pwd, type}))
+                    dispatch(authSuccess({
+                        user,
+                        pwd,
+                        type
+                    }))
                 } else {
                     dispatch(errorMsg(res.data.msg))
                 }

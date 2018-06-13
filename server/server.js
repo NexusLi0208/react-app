@@ -12,16 +12,17 @@ const cookieParser = require('cookie-parser')
 // socket
 const server=require('http').Server(app)
 const io = require('socket.io')(server)
+// 监听socket 连接
 io.on('connection',function(socket){
-    console.log('user login')
+    // 接收到用户消息    
     socket.on('sendmsg',function(data){
-    const {from,to,msg}=data.from;
-    const chatid =[from,to].sort().join('_')
-    // console.log(data)
-    Chat.create({chatid,from,to,content:msg},function(err,doc){
-        console.log(doc._doc)
+        const {from,to,msg}=data.from;
+        const chatid =[from,to].sort().join('_')
+        // 入库
+        Chat.create({chatid,from,to,content:msg},function(err,doc){
+        // 成功后广播该消息
         io.emit('recvmsg',Object.assign({},doc._doc))
-    })
+        })
     })
 })
 // 路由中间件

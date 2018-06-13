@@ -18,35 +18,50 @@ body {
   margin: 0;
   left: 0;
   color: #fff;
-  background: rgba(255, 102, 102,.9);
+  background: rgba(255, 102, 102, .9);
   width: 100%;
 }
-.am-tab-bar{
+
+.am-tab-bar {
   position: fixed;
-  height:auto;
-	bottom: 0;
-	width: 100%;
+  height: auto;
+  bottom: 0;
+  width: 100%;
 }
-.fixd-header.am-navbar{
-	position: fixed;
-	top: 0;
-	width: 100%;
+
+.fixd-header.am-navbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
 }
-.page-content{
-	padding:45px 5px;
+
+.page-content {
+  padding: 45px 5px;
 }
+
 .result-example .spe {
   width: 60px;
   height: 60px;
 }
+
 .sub-title {
   color: #888;
   font-size: 14px;
   padding: 30px 0 18px 0;
   margin-left: 15px;
 }
-.chat-input{
+
+.chat-input {
   position: fixed;
   width: 100%;
-  bottom:0;
+  bottom: 0;
+}
+
+.chat-page .chat-me .am-list-extra {
+  flex-basis: auto;
+}
+
+.chat-page .chat-me .am-list-content {
+  padding-right: 15px;
+  text-align: right;
 }
